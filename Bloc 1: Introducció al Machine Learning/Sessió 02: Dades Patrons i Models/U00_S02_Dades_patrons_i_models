@@ -1,0 +1,164 @@
+🧩 Sessió 2 — Dades, patrons i models (2 h)
+
+RAs treballats: 1 i 2
+Durada: 2 h (una sessió de classe)
+Objectiu general:
+Fer entendre als alumnes com un model pot detectar patrons a partir de dades, com es mesura l’error i com s’ajusten els paràmetres d’un model senzill.
+
+🧠 Objectius específics
+
+Comprendre el concepte d’error i funció de cost.
+
+Visualitzar com canvia l’error quan es modifica un model (una línia).
+
+Reconèixer la diferència entre patrons humans i patrons matemàtics.
+
+Introduir la idea d’ajust del model (sense fer derivades encara).
+
+Fomentar la curiositat sobre com aprèn una màquina.
+
+🏗️ Estructura de la sessió
+🔹 1️⃣ Repàs i connexió amb la sessió anterior (15 min)
+
+Objectiu: assegurar que tots recorden els conceptes clau: dades, vectors i matrius.
+
+Activitat curta:
+
+Mostra el dataset d’alçada, pes i esportistes (versió no lineal).
+
+Pregunta:
+
+“Què ens diuen aquestes dades?”
+
+“Si poséssim una línia al mig, separaria bé els esportistes?”
+
+“Què passa amb els punts que queden entre mig?”
+
+Conclusió: no és trivial; cal una manera matemàtica de quantificar “com d’encertats” som.
+
+🔹 2️⃣ Mini repàs matemàtic contextualitzat (30 min)
+
+Objectiu: entendre què és l’error i com es pot resumir en una funció de cost.
+
+🧮 Conceptes a introduir
+
+Predicció (ŷ) vs Valor real (y)
+
+Error: e = y - ŷ
+
+Error absolut i error quadràtic
+
+Mitjana dels errors (MSE: Mean Squared Error)
+
+💻 Exemple amb Python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Dades simples (exemple d'alçada - pes)
+X = np.array([1.60, 1.65, 1.70, 1.75, 1.80])
+y = np.array([55, 60, 65, 70, 76])   # valors reals
+y_pred = np.array([58, 63, 67, 69, 73])  # predicció d'un model simple
+
+errors = y - y_pred
+mse = np.mean(errors**2)
+
+plt.scatter(X, y, label='Valors reals')
+plt.plot(X, y_pred, color='orange', label='Predicció')
+plt.legend()
+plt.title(f'Error quadràtic mig (MSE) = {mse:.2f}')
+plt.xlabel("Alçada (m)")
+plt.ylabel("Pes (kg)")
+plt.show()
+
+
+Reflexió guiada:
+
+Si canviem la línia (la predicció), l’error canvia.
+
+El model “aprèn” buscant la línia que minimitza aquest error.
+
+Sense derivades: imagina que provem moltes línies i ens quedem amb la que té l’error més petit.
+
+🔹 3️⃣ Activitat aplicada: Juguem a ser el model (45 min)
+
+Objectiu: entendre què vol dir “ajustar un model” mitjançant prova i error.
+
+Metodologia: simulació pràctica amb dades visuals.
+
+Mostra el gràfic “Alçada vs Pes” (dataset complet de 20 persones).
+
+Demana als alumnes que traquin una línia recta a mà (amb llapis o al gràfic projectat) que “separi” esportistes de no esportistes o que “ajusti” el pes.
+
+Calcula amb Python l’error de cada proposta.
+
+💻 Exemple interactiu (professor)
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Exemple de dues línies candidates
+X = np.linspace(1.55, 1.95, 100)
+model1 = 30 + 25 * X    # línia 1
+model2 = 40 + 20 * X    # línia 2
+
+plt.scatter(df['Alçada_m'], df['Pes_kg'], c=df['Esportista'], cmap='coolwarm', label='Dades reals')
+plt.plot(X, model1, label='Model 1')
+plt.plot(X, model2, label='Model 2')
+plt.legend()
+plt.xlabel('Alçada (m)')
+plt.ylabel('Pes (kg)')
+plt.title('Comparant models visuals')
+plt.show()
+
+
+Discussió:
+
+Quin model “encaixa millor”?
+
+Si fóssim la màquina, com podríem decidir-ho matemàticament?
+
+Com podem saber quan parar d’ajustar?
+
+👉 Conclusió: això és el que fa l’algorisme d’aprenentatge: canvia els paràmetres per reduir l’error.
+
+🔹 4️⃣ Tancament i reflexió (15 min)
+
+Preguntes per consolidar:
+
+Què és una funció de cost?
+
+Com sap una màquina si està millorant?
+
+Què diferencia un model “ajustat” d’un que “memoritzaria” els exemples?
+
+Què creieu que passa si hi ha massa variables?
+
+Missatge final:
+
+L’aprenentatge automàtic consisteix a trobar els paràmetres del model que minimitzen l’error sobre les dades.
+El proper pas (Bloc 1) és veure com s’aprèn aquest ajust pas a pas: la regressió supervisada.
+
+🧾 Materials necessaris
+
+Notebook o script amb el dataset del Bloc 0 (no lineal).
+
+Projector o pissarra digital per dibuixar línies i comparar errors.
+
+Paper i bolígraf per l’activitat “traça la teva línia”.
+
+Càlculs visuals d’error amb Python (ja preparats pel docent).
+
+🎯 Resultats esperats
+
+En acabar la sessió, l’alumne:
+
+Entén el concepte de funció de cost (error mitjà).
+
+Sap que l’aprenentatge és un procés iteratiu d’ajust.
+
+Pot raonar perquè una línia pot funcionar millor que una altra.
+
+Té curiositat per saber com s’automatitza aquest procés (gradient descendent).
+
+
+Valors solució:     #a_hat, b_hat = 24.965, 20.052
+    #print(f'a = {a_hat}, b = {b_hat}')

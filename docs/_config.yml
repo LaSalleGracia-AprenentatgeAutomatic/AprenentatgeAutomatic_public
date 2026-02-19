@@ -1,0 +1,30 @@
+title: Aprenentatge Automàtic
+description: "Web de l'assignatura: guia, temari, pràctiques, avaluació i recursos."
+remote_theme: pmarsceill/just-the-docs
+baseurl: "/AprenentatgeAutomatic_public"
+url: "https://lasallegracia-aprenentgatgeautomatic.github.io"
+
+# Just the docs settings
+color_scheme: light
+search_enabled: true
+heading_anchors: true
+
+# Site settings
+author:
+  name: Jordi Cortés
+  email: jcortes@lasalle.cat
+
+# Build settings
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title
+
+# Collections
+collections:
+  pages:
+    output: true
+    permalink: /:collection/:path/
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap

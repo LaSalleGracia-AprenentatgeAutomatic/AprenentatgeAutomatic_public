@@ -1,0 +1,26 @@
+{%- assign target = include.href | replace: site.baseurl, "" -%}
+{%- assign exists = false -%}
+
+{%- comment -%} Comprova fitxers estàtics (pdf, ipynb, etc.) {%- endcomment -%}
+{%- for f in site.static_files -%}
+  {%- if f.path == target -%}
+    {%- assign exists = true -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- comment -%} Comprova pàgines (md/html processades per Jekyll) {%- endcomment -%}
+{%- if exists == false -%}
+  {%- for p in site.pages -%}
+    {%- if p.url == include.href or p.url == target -%}
+      {%- assign exists = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if exists -%}
+  <a href="{{ include.href | relative_url }}">{{ include.text }}</a>
+{%- else -%}
+  <span class="nolink">{{ include.text }}</span>
+{%- endif -%}
